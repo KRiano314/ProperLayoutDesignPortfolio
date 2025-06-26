@@ -4,7 +4,6 @@ import HrefButtons from "./Buttons";
 import Resume from './Resume.js';
 import Projects from './Projects.js';
 import Contact from './Contact.js';
-import SlidingImageReveal from "./Effects.js";
 import ProjectsPreview from "./ProjectPreview.js";
 import AboutMe from "./AboutMe.js";
 import React, { useEffect, useRef } from "react";
