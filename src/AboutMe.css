@@ -1,0 +1,156 @@
+.about-section {
+  background-color: #0d0d0d;
+  color: #e0e0e0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  padding: 4rem 2rem;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+@media (min-width: 768px) {
+  .about-content {
+    flex-direction: row;
+  }
+}
+
+.about-left img {
+  width: 250px;
+  height: 250px;
+  border-radius: 12px;
+  border: 2px solid #7c3aed;
+  object-fit: cover;
+  box-shadow: 0 0 10px #7c3aed;
+}
+
+.about-right h2 {
+  font-size: 2.5rem;
+  color: #c084fc;
+  margin-bottom: 1rem;
+}
+
+.about-right p {
+  color: #a3a3a3;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.stat-grid h3 {
+  font-size: 2rem;
+  color: #8b5cf6;
+}
+
+.stat-grid p {
+  font-size: 0.875rem;
+  color: #737373;
+}
+/* Keyword Highlights */
+.highlight-cyan {
+  color: #22d3ee; /* cyan-400 */
+  font-weight: 600;
+}
+
+.highlight-purple {
+  color: #a855f7; /* purple-400 */
+}
+
+.highlight-pink {
+  color: #ec4899; /* pink-400 */
+}
+
+.highlight-green {
+  color: #22c55e; /* green-500 */
+}
+
+.highlight-yellow {
+  color: #eab308; /* yellow-400 */
+}
+
+/* Optional glow effect for title */
+.about-right h2 {
+  font-size: 2.5rem;
+  color: #c084fc;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 6px #9333ea, 0 0 12px #c084fc;
+}
+/* Skills + Stats Container */
+.skill-stat-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+  .skill-stat-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Skills Styling */
+.skills-section {
+  background-color: #1a1a1a;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid #4c1d95;
+  box-shadow: 0 0 10px #7c3aed;
+}
+
+.skills-section h3 {
+  color: #c084fc;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.skills-section ul {
+  list-style: none;
+  padding-left: 0;
+  color: #a3a3a3;
+}
+
+.skills-section li {
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+/* Stats Styling */
+.stats-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.stat-item {
+  background-color: #1a1a1a;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid #4c1d95;
+  box-shadow: 0 0 10px #7c3aed;
+}
+
+.stat-item h3 {
+  font-size: 2rem;
+  color: #a855f7;
+  margin-bottom: 0.25rem;
+}
+
+.stat-item p {
+  font-size: 0.875rem;
+  color: #737373;
+}

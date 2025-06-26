@@ -33,9 +33,9 @@ html {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.514), rgba(0, 0, 0, 0.671)),
-    url('./HBG1.jpg') center center/cover no-repeat;
-  z-index: -2; /* lower than ripples canvas */
+  background: 
+    url('./BG3.jpg') center center/cover no-repeat;
+  z-index: -1; /* lower than ripples canvas */
 }
 
 
@@ -43,7 +43,7 @@ html {
   height: 10vh;
   width: 100%;
   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4)),
-    url('./header2.png') center center/cover no-repeat;
+    url('./header.png') center center/cover no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -189,7 +189,7 @@ html {
 
   overflow: hidden;
   white-space: nowrap;
-  animation: typingSpan 1.5s steps(25) forwards;
+  animation: typingSpan 1.5s steps(15) forwards;
 }
 
 /* Keyframes for typing */
@@ -205,7 +205,7 @@ html {
 
 @keyframes typingSpan {
   from { width: 0; }
-  to { width: 26ch; } /* Adjust to your span length */
+  to { width: 98ch; } /* Adjust to your span length */
 }
 
 
@@ -232,4 +232,12 @@ html {
   padding: 10px;
   border-radius: 25px;
 
+}
+
+html, body {
+  scroll-behavior: smooth;
+}
+
+main {
+  scroll-snap-align: start;
 }
