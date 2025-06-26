@@ -19,13 +19,25 @@ html {
 .MainHeader {
   height: 100vh;
   width: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0.363), rgba(0, 0, 0, 0.671)),
-    url('./HBG1.jpg') center center/cover no-repeat;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   color: white;
+  animation: slideDown 1s ease forwards;
+  overflow: hidden;
 }
+
+/* Move background image to ::before */
+.MainHeader::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.514), rgba(0, 0, 0, 0.671)),
+    url('./HBG1.jpg') center center/cover no-repeat;
+  z-index: -2; /* lower than ripples canvas */
+}
+
 
 .MainHeaderOthers {
   height: 10vh;
@@ -36,7 +48,20 @@ html {
   flex-direction: column;
   justify-content: space-between;
   color: white;
+  animation: slideDown 1s ease forwards;
 }
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 
 .Navbar {
   padding: 20px;
@@ -122,7 +147,6 @@ html {
 .Navbar button:hover span::after {
   height: 100%;
 }
-
 .IntroText {
   flex-grow: 1;
   display: flex;
@@ -131,19 +155,81 @@ html {
   align-items: center;
 }
 
+/* Typed animation for paragraph */
 .IntroText p {
   font-size: 2.5rem;
   font-weight: 300;
+  -webkit-animation-fill-mode: forwards;
+
+  overflow: hidden;
+  white-space: nowrap;
+
+  animation: typingP 2s steps(15) forwards;
 }
 
+/* Typed animation for h1 (right-to-left with cursor hidden after typing) */
 .IntroText h1 {
   font-size: 3.5rem;
   font-weight: 800;
+  
+
+  overflow: hidden;
+  white-space: nowrap;
+  direction: rtl; /* types from right to left */
+  animation: typingH1 3s steps(20) forwards;
 }
 
+/* Typed animation for span */
 .IntroText span {
   margin-top: 10px;
   font-size: 1rem;
   letter-spacing: 2px;
   color: #dcdcdc;
+
+
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typingSpan 1.5s steps(25) forwards;
+}
+
+/* Keyframes for typing */
+@keyframes typingP {
+  from { width: 0; }
+  to { width: 15ch; } /* Adjust to your paragraph length */
+}
+
+@keyframes typingH1 {
+  from { width: 0; }
+  to { width: 20ch; } /* Adjust to your h1 length */
+}
+
+@keyframes typingSpan {
+  from { width: 0; }
+  to { width: 26ch; } /* Adjust to your span length */
+}
+
+
+
+
+.ProjPreview {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px; /* spacing between columns */
+  flex-grow: 1;
+  padding: 50px 20px 20px 20px; /* top right bottom left */
+
+}
+
+.ProjRColumn,
+.ProjLColumn {
+  border: 5px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 25px;
+
 }
