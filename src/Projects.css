@@ -20,12 +20,20 @@
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(200px, 1fr));
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr); /* fixed to 2 equal columns */
+  grid-template-rows: repeat(2, auto);   /* allows variable row height */
   gap: 30px;
   max-width: 800px;
   width: 100%;
 }
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr; /* stacks all items on smaller screens */
+    grid-template-rows: auto;
+  }
+}
+
 
 .project-card {
   background: #1e1e1e;

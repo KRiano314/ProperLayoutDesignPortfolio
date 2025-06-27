@@ -16,10 +16,37 @@ const variants = {
   }
 };
 
+const projects = [
+  {
+    title: "WordPress Website Contract",
+    description: "1-year freelance project creating and maintaining a responsive business website with SEO and custom features.",
+    tech: "WordPress · PHP · Elementor",
+    variant: "hiddenLeft"
+  },
+  {
+    title: "Smart Trash Segregator",
+    description: "Arduino-based system that uses sensors to separate wet and dry waste with a servo-powered bin.",
+    tech: "Arduino · C++ · IR & Moisture Sensors",
+    variant: "hiddenRight"
+  },
+  {
+    title: "Personal Portfolio Website",
+    description: "This site — built in React to showcase my projects, skills, and ongoing work in frontend and automation.",
+    tech: "React · JavaScript · Framer Motion",
+    variant: "hiddenBottom"
+  },
+  {
+    title: "YOLO/TensorFlow Object Detection (Ongoing)",
+    description: "Building a real-time detection system using camera feeds and machine learning for automation and analysis.",
+    tech: "Python · OpenCV · TensorFlow · YOLOv8",
+    variant: "hiddenTop"
+  }
+];
+
 export default function Projects() {
   const { ref, inView } = useInView({
     threshold: 0.3,
-    triggerOnce: false, // allows both enter and exit animation
+    triggerOnce: false,
   });
 
   return (
@@ -27,42 +54,20 @@ export default function Projects() {
       <h2 className="projects-title">My Projects</h2>
       <div className="projects-grid">
         <AnimatePresence>
-          <motion.div
-            className="project-card"
-            variants={variants}
-            initial="hiddenLeft"
-            animate={inView ? "visible" : "hiddenLeft"}
-            exit="hiddenLeft"
-          >
-            Project 1
-          </motion.div>
-          <motion.div
-            className="project-card"
-            variants={variants}
-            initial="hiddenRight"
-            animate={inView ? "visible" : "hiddenRight"}
-            exit="hiddenRight"
-          >
-            Project 2
-          </motion.div>
-          <motion.div
-            className="project-card"
-            variants={variants}
-            initial="hiddenBottom"
-            animate={inView ? "visible" : "hiddenBottom"}
-            exit="hiddenBottom"
-          >
-            Project 3
-          </motion.div>
-          <motion.div
-            className="project-card"
-            variants={variants}
-            initial="hiddenTop"
-            animate={inView ? "visible" : "hiddenTop"}
-            exit="hiddenTop"
-          >
-            Project 4
-          </motion.div>
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              className="project-card"
+              variants={variants}
+              initial={variants[project.variant]}
+              animate={inView ? "visible" : project.variant}
+              exit={project.variant}
+            >
+              <h3>{project.title}</h3>
+              <p style={{ fontSize: "1rem", fontWeight: "400", margin: "0.5rem 0", color: "#ccc" }}>{project.description}</p>
+              <p style={{ fontSize: "0.9rem", fontStyle: "italic", color: "#7dd3fc" }}>{project.tech}</p>
+            </motion.div>
+          ))}
         </AnimatePresence>
       </div>
     </section>
