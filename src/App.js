@@ -69,7 +69,7 @@ function App() {
         <Resume resumeRef={resumeRef} />
         <Footer contactRef={contactRef} />
       </>
-    )}
+
   </div>
 );
 }
