@@ -1,5 +1,4 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import HrefButtons from "./Buttons";
 import ProjectsPreview from "./ProjectPreview.js";
 import AboutMe from "./AboutMe.js";
