@@ -9,8 +9,10 @@ function Resume({ resumeRef }) {
         <h3>Freelance WordPress Developer</h3>
         <p><strong>Shojiki Trading</strong> — Sept 2022 to Present</p>
         <p>Developed responsive web applications using React, integrated APIs, and optimized performance.</p>
+
+        {/* ✅ External link to ShojikiTrading.com */}
         <a
-          href="https://shojikitrading.com"
+          href="https://shojikitrading.com/"
           target="_blank"
           rel="noopener noreferrer"
           className="company-website-btn"
@@ -19,8 +21,9 @@ function Resume({ resumeRef }) {
         </a>
       </div>
 
+      {/* ✅ Resume download from public folder */}
       <a
-        href="\Kelsey_Riano_VisualCV_Resume.pdf"
+        href="/Kelsey_Riano_VisualCV_Resume.pdf"
         target="_blank"
         rel="noopener noreferrer"
         className="download-resume-btn"
