@@ -8,7 +8,6 @@ import Footer from "./Footer.js";
 
 
 function AppWrapper() {
-  const location = useLocation();
   const rippleInterval = useRef(null);
   const aboutRef = useRef(null);
   const projectsRef = useRef(null);
