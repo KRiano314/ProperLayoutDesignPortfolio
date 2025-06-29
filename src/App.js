@@ -1,17 +1,30 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import HrefButtons from "./Buttons";
-import Resume from './Resume.js';
-import Projects from './Projects.js';
-import Contact from './Contact.js';
 import ProjectsPreview from "./ProjectPreview.js";
 import AboutMe from "./AboutMe.js";
 import React, { useEffect, useRef } from "react";
+import Resume from "./Resume.js";
+import Footer from "./Footer.js";
+
 
 function AppWrapper() {
   const location = useLocation();
   const rippleInterval = useRef(null);
   const aboutRef = useRef(null);
+  const projectsRef = useRef(null);
+  const resumeRef = useRef(null);
+  const contactRef = useRef(null);
+    
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const scrollToResume = () => {
+    if (resumeRef.current) {
+      resumeRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const scrollToAbout = () => {
     if (aboutRef.current) {
@@ -19,44 +32,28 @@ function AppWrapper() {
     }
   };
 
-  useEffect(() => {
-    if (rippleInterval.current) {
-      clearInterval(rippleInterval.current);
-      rippleInterval.current = null;
+  const scrollToProjects = () => {
+    if (projectsRef.current) {
+      projectsRef.current.scrollIntoView({ behavior: 'smooth' });
     }
+  };
 
-    if (location.pathname === "/") {
-      try {
-        if (window.$ && typeof window.$.fn.ripples === "function") {
-          window.$(".MainHeader").ripples({
-            resolution: 1024,
-            dropRadius: 50,
-            perturbance: 1,
-          });
-        } else {
-          console.warn("Ripples plugin not loaded.");
-        }
-      } catch (e) {
-        console.error("Ripples initialization failed:", e);
-      }
+  const scrollToContact = () => {
+    if (contactRef.current) {
+      contactRef.current.scrollIntoView({ behavior: 'smooth' });
     }
+  };
 
-    return () => {
-      if (window.$ && window.$(".MainHeader").data("ripples")) {
-        window.$(".MainHeader").ripples("destroy");
-      }
-      if (rippleInterval.current) {
-        clearInterval(rippleInterval.current);
-        rippleInterval.current = null;
-      }
-    };
-  }, [location.pathname]);
-
-return (
+  return (
   <div className="App">
-    {/* ✅ Fixed Navbar always visible */}
     <div className="NavbarFixed">
-      <HrefButtons />
+      <HrefButtons
+        scrollToTop={scrollToTop}
+        scrollToAbout={scrollToAbout}
+        scrollToProjects={scrollToProjects}
+        scrollToResume={scrollToResume}
+        scrollToContact={scrollToContact}
+      />
     </div>
 
     {location.pathname === "/" && (
@@ -66,25 +63,19 @@ return (
             <p>Hello, I'm</p>
             <h1>Kelsey Riano</h1>
             <span>Aspiring Frontend Developer | Enthusiast in Machine Learning & Automation Systems</span>
-            <br/><button onClick={scrollToAbout}>Learn More</button>
+            <br />
+            <button onClick={scrollToAbout}>Learn More</button>
           </div>
         </header>
 
         <AboutMe aboutRef={aboutRef} />
-        <ProjectsPreview />
+        <ProjectsPreview ref={projectsRef} />
+        <Resume resumeRef={resumeRef} />
+        <Footer contactRef={contactRef} />
       </>
     )}
-
-    <main>
-      <Routes>
-        <Route path="/Resume" element={<Resume />} />
-        <Route path="/Projects" element={<Projects />} />
-        <Route path="/Contact" element={<Contact />} />
-      </Routes>
-    </main>
   </div>
 );
-
 }
 
 

@@ -1,0 +1,10 @@
+.resume-section {
+  background: #1e1e1e;
+  padding: 30px;
+  border-radius: 15px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion, AnimatePresence } from "framer-motion";
 import './Projects.css';
@@ -16,7 +16,7 @@ const variants = {
   }
 };
 
-const projects = [
+const projects = [ 
   {
     title: "WordPress Website Contract",
     description: "1-year freelance project creating and maintaining a responsive business website with SEO and custom features.",
@@ -41,16 +41,22 @@ const projects = [
     tech: "Python · OpenCV · TensorFlow · YOLOv8",
     variant: "hiddenTop"
   }
-];
+ ];
 
-export default function Projects() {
-  const { ref, inView } = useInView({
+const ProjectsPreview = forwardRef(function ProjectsPreview(props, externalRef) {
+  const { ref: inViewRef, inView } = useInView({
     threshold: 0.3,
     triggerOnce: false,
   });
 
+  // Merge the external ref and the intersection observer ref
+  function setRefs(el) {
+    inViewRef(el);
+    if (externalRef) externalRef.current = el;
+  }
+
   return (
-    <section className="projects-section" ref={ref}>
+    <section className="projects-section" ref={setRefs}>
       <h2 className="projects-title">My Projects</h2>
       <div className="projects-grid">
         <AnimatePresence>
@@ -72,4 +78,6 @@ export default function Projects() {
       </div>
     </section>
   );
-}
+});
+
+export default ProjectsPreview;
