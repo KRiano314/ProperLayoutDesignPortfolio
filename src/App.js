@@ -53,8 +53,6 @@ function AppWrapper() {
         scrollToContact={scrollToContact}
       />
     </div>
-
-    {location.pathname === "/" && (
       <>
         <header className="MainHeader">
           <div className="IntroText">
