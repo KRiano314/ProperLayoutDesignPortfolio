@@ -20,11 +20,12 @@ const projects = [
     variant: "hiddenRight"
   },
   {
-    title: "Personal Portfolio Website",
-    description:
-      "This site — built in React to showcase my projects, skills, and ongoing work in frontend and automation.",
-    tech: "React · JavaScript · Framer Motion",
-    variant: "hiddenBottom"
+  title: "Personal Portfolio Website",
+  description:
+    "This site — built in React to showcase my projects, skills, and ongoing work in frontend and automation.",
+  tech: "React · JavaScript · Framer Motion",
+  variant: "hiddenBottom",
+  image: "/Portfolio.png"
   },
   {
     title: "YOLO/TensorFlow Object Detection (Ongoing)",
