@@ -1,55 +1,54 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { motion, AnimatePresence } from "framer-motion";
-import './Projects.css';
+import { motion } from "framer-motion";
+import "./Projects.css";
 
-const variants = {
-  hiddenLeft: { opacity: 0, x: -100 },
-  hiddenRight: { opacity: 0, x: 100 },
-  hiddenTop: { opacity: 0, y: -100 },
-  hiddenBottom: { opacity: 0, y: 100 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    y: 0,
-    transition: { type: "spring", stiffness: 50, damping: 14 }
-  }
-};
-
-const projects = [ 
+const projects = [
   {
     title: "WordPress Website Contract",
-    description: "1-year freelance project creating and maintaining a responsive business website with SEO and custom features.",
+    description:
+      "1-year freelance project creating and maintaining a responsive business website with SEO and custom features.",
     tech: "WordPress · PHP · Elementor",
-    variant: "hiddenLeft"
+    variant: "hiddenLeft",
+    image: "/ShojikiTrading.png"
   },
   {
     title: "Smart Trash Segregator",
-    description: "Arduino-based system that uses sensors to separate wet and dry waste with a servo-powered bin.",
-    tech: "Arduino · C++ · IR & Moisture Sensors",
+    description:
+      "Arduino-based system that uses sensors to separate wet and dry waste with a servo-powered bin.",
+    tech: "Arduino · C++ · IR & Capacitive",
     variant: "hiddenRight"
   },
   {
     title: "Personal Portfolio Website",
-    description: "This site — built in React to showcase my projects, skills, and ongoing work in frontend and automation.",
+    description:
+      "This site — built in React to showcase my projects, skills, and ongoing work in frontend and automation.",
     tech: "React · JavaScript · Framer Motion",
     variant: "hiddenBottom"
   },
   {
     title: "YOLO/TensorFlow Object Detection (Ongoing)",
-    description: "Building a real-time detection system using camera feeds and machine learning for automation and analysis.",
+    description:
+      "Building a real-time detection system using camera feeds and machine learning for automation and analysis.",
     tech: "Python · OpenCV · TensorFlow · YOLOv8",
     variant: "hiddenTop"
   }
- ];
+];
 
 const ProjectsPreview = forwardRef(function ProjectsPreview(props, externalRef) {
   const { ref: inViewRef, inView } = useInView({
     threshold: 0.3,
-    triggerOnce: false,
+    triggerOnce: true // Make sure it doesn't animate again when scrolling back
   });
 
-  // Merge the external ref and the intersection observer ref
+  const [openCards, setOpenCards] = useState(Array(projects.length).fill(false));
+
+  function toggleCard(index) {
+    setOpenCards((prev) =>
+      prev.map((val, i) => (i === index ? !val : val))
+    );
+  }
+
   function setRefs(el) {
     inViewRef(el);
     if (externalRef) externalRef.current = el;
@@ -59,22 +58,49 @@ const ProjectsPreview = forwardRef(function ProjectsPreview(props, externalRef) 
     <section className="projects-section" ref={setRefs}>
       <h2 className="projects-title">My Projects</h2>
       <div className="projects-grid">
-        <AnimatePresence>
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              className="project-card"
-              variants={variants}
-              initial={variants[project.variant]}
-              animate={inView ? "visible" : project.variant}
-              exit={project.variant}
-            >
-              <h3>{project.title}</h3>
-              <p style={{ fontSize: "1rem", fontWeight: "400", margin: "0.5rem 0", color: "#ccc" }}>{project.description}</p>
-              <p style={{ fontSize: "0.9rem", fontStyle: "italic", color: "#7dd3fc" }}>{project.tech}</p>
-            </motion.div>
-          ))}
-        </AnimatePresence>
+        {projects.map((project, index) => {
+          const slideX = index % 2 === 0 ? -430 : 430;
+          const isOpen = openCards[index];
+
+          const initialX =
+            project.variant === "hiddenLeft"
+              ? -100
+              : project.variant === "hiddenRight"
+              ? 100
+              : 0;
+          const initialY =
+            project.variant === "hiddenTop"
+              ? -100
+              : project.variant === "hiddenBottom"
+              ? 100
+              : 0;
+
+          return (
+            <div key={index} className="project-wrapper">
+              {project.image && (
+                <div className="project-image">
+                  <img src={project.image} alt={project.title} />
+                </div>
+              )}
+              <motion.div
+                className="project-card"
+                initial={{ opacity: 0, x: initialX, y: initialY }}
+                animate={{
+                  opacity: inView ? 1 : 0,
+                  x: isOpen ? slideX : 0,
+                  y: 0
+                }}
+                transition={{ type: "spring", stiffness: 80, damping: 14 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => toggleCard(index)}
+              >
+                <h3>{project.title}</h3>
+                <p className="project-description">{project.description}</p>
+                <p className="project-tech">{project.tech}</p>
+              </motion.div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

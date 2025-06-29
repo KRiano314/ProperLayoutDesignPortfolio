@@ -10,7 +10,7 @@ export default function Footer({ contactRef }) {
         <p>Feel free to reach out for collaborations or just a friendly chat.</p>
 
         <div className="footer-links">
-          <a href="mailto:yourname@example.com">yourname@example.com</a>
+          <a href="mailto:kelseyriano8@gmail.com">kelseyriano8@gmail.com</a>
           <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>

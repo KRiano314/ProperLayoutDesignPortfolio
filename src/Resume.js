@@ -6,13 +6,17 @@ function Resume({ resumeRef }) {
       <h2>Resume</h2>
 
       <div className="resume-summary">
-        <h3>Frontend Developer</h3>
-        <p><strong>Company Name</strong> — Jan 2022 to Present</p>
-        <p>Developed responsive web applications using React, integrated APIs, and optimized performance.</p>
-
         <h3>Freelance WordPress Developer</h3>
-        <p><strong>Freelance</strong> — 2021 to 2022</p>
-        <p>Created and maintained business websites with custom plugins and SEO optimization.</p>
+        <p><strong>Shojiki Trading</strong> — Sept 2022 to Present</p>
+        <p>Developed responsive web applications using React, integrated APIs, and optimized performance.</p>
+        <a
+          href="https://shojikitrading.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="company-website-btn"
+        >
+          Visit ShojikiTrading.com
+        </a>
       </div>
 
       <a
