@@ -7,7 +7,7 @@ import Resume from "./Resume.js";
 import Footer from "./Footer.js";
 
 
-function AppWrapper() {
+function App() {
   const rippleInterval = useRef(null);
   const aboutRef = useRef(null);
   const projectsRef = useRef(null);
@@ -72,15 +72,6 @@ function AppWrapper() {
     )}
   </div>
 );
-}
-
-
-function App() {
-  return (
-    <Router>
-      <AppWrapper />
-    </Router>
-  );
 }
 
 export default App;
