@@ -2,9 +2,10 @@ import "./App.css";
 import HrefButtons from "./Buttons";
 import ProjectsPreview from "./ProjectPreview.js";
 import AboutMe from "./AboutMe.js";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Resume from "./Resume.js";
 import Footer from "./Footer.js";
+import { motion, AnimatePresence } from "framer-motion";
 
 function App() {
   const rippleInterval = useRef(null);
@@ -13,33 +14,16 @@ function App() {
   const resumeRef = useRef(null);
   const contactRef = useRef(null);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  const [isLoading, setIsLoading] = useState(true);
 
-  const scrollToResume = () => {
-    if (resumeRef.current) {
-      resumeRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  // Fade-out after 5 seconds or when video ends
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 5000); // match video length
 
-  const scrollToAbout = () => {
-    if (aboutRef.current) {
-      aboutRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const scrollToProjects = () => {
-    if (projectsRef.current) {
-      projectsRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const scrollToContact = () => {
-    if (contactRef.current) {
-      contactRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+    return () => clearTimeout(timeout);
+  }, []);
 
   useEffect(() => {
     if (rippleInterval.current) {
@@ -47,7 +31,6 @@ function App() {
       rippleInterval.current = null;
     }
 
-    // Always run the ripples on mount
     try {
       if (window.$ && typeof window.$.fn.ripples === "function") {
         window.$(".MainHeader").ripples({
@@ -74,33 +57,59 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <div className="NavbarFixed">
-        <HrefButtons
-          scrollToTop={scrollToTop}
-          scrollToAbout={scrollToAbout}
-          scrollToProjects={scrollToProjects}
-          scrollToResume={scrollToResume}
-          scrollToContact={scrollToContact}
-        />
-      </div>
+    <>
+      <AnimatePresence>
+        {isLoading && (
+          <motion.div
+            className="splash-screen"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <video
+              className="splash-video"
+              autoPlay
+              muted
+              playsInline
+              onEnded={() => setIsLoading(false)}
+            >
+              <source src="/Loading.mp4" type="video/mp4" />
+            </video>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      <header className="MainHeader">
-        <div className="IntroText">
-          <p>Hello, I'm</p>
-          <h1>Kelsey Riano</h1>
-          <span>Aspiring Frontend Developer | Enthusiast in Machine Learning & Automation Systems</span>
-          <br />
-          <button onClick={scrollToAbout}>Learn More</button>
+      {!isLoading && (
+        <div className="App">
+          <div className="NavbarFixed">
+            <HrefButtons
+              scrollToTop={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              scrollToAbout={() => aboutRef.current?.scrollIntoView({ behavior: "smooth" })}
+              scrollToProjects={() => projectsRef.current?.scrollIntoView({ behavior: "smooth" })}
+              scrollToResume={() => resumeRef.current?.scrollIntoView({ behavior: "smooth" })}
+              scrollToContact={() => contactRef.current?.scrollIntoView({ behavior: "smooth" })}
+            />
+          </div>
+
+          <header className="MainHeader">
+            <div className="IntroText">
+              <p>Hello, I'm</p>
+              <h1>Kelsey Riano</h1>
+              <span>Aspiring Frontend Developer | Enthusiast in Machine Learning & Automation Systems</span>
+              <br />
+              <button onClick={() => aboutRef.current?.scrollIntoView({ behavior: "smooth" })}>
+                Learn More
+              </button>
+            </div>
+          </header>
+
+          <AboutMe aboutRef={aboutRef} />
+          <ProjectsPreview ref={projectsRef} />
+          <Resume resumeRef={resumeRef} />
+          <Footer contactRef={contactRef} />
         </div>
-      </header>
-
-      <AboutMe aboutRef={aboutRef} />
-
-      <ProjectsPreview ref={projectsRef} />
-      <Resume resumeRef={resumeRef} />
-      <Footer contactRef={contactRef} />
-    </div>
+      )}
+    </>
   );
 }
 

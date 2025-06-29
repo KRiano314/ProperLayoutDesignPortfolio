@@ -213,3 +213,17 @@ main {
   to { width: 98ch; }
 }
 
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.splash-video {
+  width: 100%;
+  height: 100%;
+}
