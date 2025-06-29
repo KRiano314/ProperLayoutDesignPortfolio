@@ -96,6 +96,7 @@ function App() {
       </header>
 
       <AboutMe aboutRef={aboutRef} />
+
       <ProjectsPreview ref={projectsRef} />
       <Resume resumeRef={resumeRef} />
       <Footer contactRef={contactRef} />

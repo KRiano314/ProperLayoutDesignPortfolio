@@ -1,10 +1,74 @@
+
 .resume-section {
-  background: #1e1e1e;
-  padding: 30px;
-  border-radius: 15px;
-  font-size: 1.25rem;
-  font-weight: 600;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background: #0d0d0d; /* darker background for more contrast */
+  padding: 60px 30px;
+  font-family: 'Orbitron', sans-serif;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: -5;
+  margin: 0 auto;
+}
+
+.resume-section h2 {
+  font-size: 2.5rem;
+  color: #c084fc;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 6px #9333ea, 0 0 12px #c084fc;
+  animation: neon-glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes neon-glow {
+  from {
+    text-shadow: 0 0 6px #9333ea, 0 0 12px #c084fc;
+  }
+  to {
+    text-shadow: 0 0 12px #9333ea, 0 0 24px #c084fc;
+  }
+}
+
+.resume-summary {
+  text-align: left;
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 12px;
+  border: 2px solid #4c1d95;
+  box-shadow: 0 0 15px #7c3aed, 0 0 30px #7c3aed;
+  margin-bottom: 2rem;
+}
+
+.resume-summary h3 {
+  font-size: 1.5rem;
+  color: #a855f7;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.resume-summary p {
+  color: #a3a3a3;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.download-resume-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  color: #22d3ee;
+  border: 2px solid #22d3ee;
+  border-radius: 8px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.download-resume-btn:hover {
+  background: #22d3ee;
+  color: #000;
+  box-shadow: 0 0 10px #22d3ee, 0 0 20px #22d3ee;
 }

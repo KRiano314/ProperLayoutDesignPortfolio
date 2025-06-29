@@ -35,7 +35,7 @@ html {
   color: white;
   font-weight: 750;
   letter-spacing: 1px;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.288);
   border: none;
   padding: 1vw;
   cursor: pointer;
@@ -43,6 +43,11 @@ html {
   overflow: hidden;
   border-radius: 15px;
 }
+
+.MainHeader button:hover {
+  background-color: rgb(0, 0, 0); /* Or use 1 for fully opaque */
+}
+
 
 
 .NavbarFixed {
@@ -66,21 +71,9 @@ html {
   inset: 0;
   background: 
     url('./HBGGIF.gif') center center/cover no-repeat;
-  z-index: -1; /* lower than ripples canvas */
+  z-index: -5; /* lower than ripples canvas */
 }
 
-
-.MainHeaderOthers {
-  height: 10vh;
-  width: 100%;
-  background: linear-gradient(rgba(255, 255, 255, 0.692), rgba(255, 255, 255, 0.233)),
-    url('./HBGGIF.gif') center center/cover no-repeat;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: white;
-  animation: slideDown 1s ease forwards;
-}
 
 @keyframes slideDown {
   0% {
