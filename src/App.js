@@ -52,34 +52,39 @@ function AppWrapper() {
     };
   }, [location.pathname]);
 
-  return (
-    <div className="App">
-      {location.pathname === "/" && (
-        <>
-          <header className="MainHeader">
-            <HrefButtons />
-            <div className="IntroText">
-              <p>Hello, I'm</p>
-              <h1>Kelsey Riano</h1>
-              <span>Aspiring Frontend Developer | Enthusiast in Machine Learning & Automation Systems</span>
-              <button onClick={scrollToAbout}>Learn More</button>
-            </div>
-          </header>
-
-          <AboutMe aboutRef={aboutRef} />
-          <ProjectsPreview />
-        </>
-      )}
-
-      <main>
-        <Routes>
-          <Route path="/Resume" element={<Resume />} />
-          <Route path="/Projects" element={<Projects />} />
-          <Route path="/Contact" element={<Contact />} />
-        </Routes>
-      </main>
+return (
+  <div className="App">
+    {/* ✅ Fixed Navbar always visible */}
+    <div className="NavbarFixed">
+      <HrefButtons />
     </div>
-  );
+
+    {location.pathname === "/" && (
+      <>
+        <header className="MainHeader">
+          <div className="IntroText">
+            <p>Hello, I'm</p>
+            <h1>Kelsey Riano</h1>
+            <span>Aspiring Frontend Developer | Enthusiast in Machine Learning & Automation Systems</span>
+            <br/><button onClick={scrollToAbout}>Learn More</button>
+          </div>
+        </header>
+
+        <AboutMe aboutRef={aboutRef} />
+        <ProjectsPreview />
+      </>
+    )}
+
+    <main>
+      <Routes>
+        <Route path="/Resume" element={<Resume />} />
+        <Route path="/Projects" element={<Projects />} />
+        <Route path="/Contact" element={<Contact />} />
+      </Routes>
+    </main>
+  </div>
+);
+
 }
 
 

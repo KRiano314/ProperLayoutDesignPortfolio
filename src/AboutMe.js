@@ -40,24 +40,25 @@ function AboutMe({ aboutRef }) {
             <h3>Skills</h3>
             <ul>
               <li><strong>Languages:</strong> Python, JavaScript, C/C++</li>
-              <li><strong>Frontend:</strong> React, HTML, CSS, Tailwind</li>
-              <li><strong>Backend:</strong> Node.js, Express</li>
-              <li><strong>Databases:</strong> Firebase, MongoDB</li>
+              <li><strong>Frontend:</strong> React, HTML, CSS</li>
+              <li><strong>Backend:</strong> Node.js, Django</li>
+              <li><strong>Databases:</strong> mySQL, MongoDB</li>
+              <li><strong>Tools:</strong> AWS, GitHub</li>
             </ul>
           </div>
         
           {/* RIGHT: Stats */}
           <div className="stats-section">
             <div className="stat-item">
-              <h3>10+</h3>
+              <h3>3+</h3>
               <p>Prototypes Built</p>
             </div>
             <div className="stat-item">
-              <h3>5+</h3>
+              <h3>2+</h3>
               <p>Smart Systems Created</p>
             </div>
             <div className="stat-item">
-              <h3>20+</h3>
+              <h3>2+</h3>
               <p>Web Projects Completed</p>
             </div>
           </div>

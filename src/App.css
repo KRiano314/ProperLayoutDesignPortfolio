@@ -28,6 +28,37 @@ html {
   overflow: hidden;
 }
 
+.MainHeader button{
+  font-size: medium;
+  position: relative;
+  text-decoration: none;
+  color: white;
+  font-weight: 750;
+  letter-spacing: 1px;
+  background-color: black;
+  border: none;
+  padding: 1vw;
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+
+.NavbarFixed {
+  position: fixed;   /* stays in place when scrolling */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;       /* higher than your ripples/video */
+  background-color: rgba(0, 0, 0, 0.493);
+}
+
+.NavbarFixed .Navbar {
+  padding: 20px;
+}
+
+
 /* Move background image to ::before */
 .MainHeader::before {
   content: "";
