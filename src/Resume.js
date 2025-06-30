@@ -8,7 +8,7 @@ function Resume({ resumeRef }) {
       <div className="resume-summary">
         <h3>Freelance WordPress Developer</h3>
         <p><strong>Shojiki Trading</strong> — Sept 2022 to Present</p>
-        <p>Developed responsive web applications using React, integrated APIs, and optimized performance.</p>
+        <p>Developed responsive web applications using Wordpress and Elementor.</p>
 
         {/* ✅ External link to ShojikiTrading.com */}
         <a
