@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsLoading(false);
-    }, 5000); // match video length
+    }, 10000); // match video length
 
     return () => clearTimeout(timeout);
   }, []);
