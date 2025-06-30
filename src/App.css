@@ -126,15 +126,17 @@ main {
   animation: slideDown 1s ease forwards;
 }
 
-/* Background Video */
+/* Background Video or Image (GIF) */
 .background-video {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
   width: 100%;
+  height: 100%;
   object-fit: cover;
   z-index: -5;
+  pointer-events: none;
+  user-select: none;
 }
 
 .MainHeader button {
@@ -216,6 +218,7 @@ main {
   to { width: 98ch; }
 }
 
+/* Splash screen */
 .splash-screen {
   position: fixed;
   inset: 0;

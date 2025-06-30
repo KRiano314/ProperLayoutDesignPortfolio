@@ -6,8 +6,8 @@ import React, { useEffect, useRef, useState } from "react";
 import Resume from "./Resume.js";
 import Footer from "./Footer.js";
 import { motion, AnimatePresence } from "framer-motion";
-import Loading2 from "./Loading2.mp4";
-import BigCart from "./BigCart.mp4";
+import Loading from "./Loading.mp4";
+import HBGGIF from "./HBGGIF.gif";
 
 function App() {
   const rippleInterval = useRef(null);
@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsLoading(false);
-    }, 10000);
+    }, 10001);
 
     return () => clearTimeout(timeout);
   }, []);
@@ -74,7 +74,7 @@ function App() {
               playsInline
               onEnded={() => setIsLoading(false)}
             >
-              <source src={Loading2} type="video/mp4" />
+              <source src={Loading} type="video/mp4" />
             </video>
           </motion.div>
         )}
@@ -93,20 +93,7 @@ function App() {
           </div>
 
           <header className="MainHeader">
-            {/* ✅ Optimized background video with preload and poster */}
-            <video
-              className="background-video"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              poster="/poster.jpg" // ✅ Replace with actual poster image path
-            >
-              <source src={BigCart} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-
+            <img src={HBGGIF} alt="Background animation" className="background-video" />
             <div className="IntroText">
               <p>Hello, I'm</p>
               <h1>Kelsey Riano</h1>
