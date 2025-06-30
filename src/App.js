@@ -6,6 +6,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Resume from "./Resume.js";
 import Footer from "./Footer.js";
 import { motion, AnimatePresence } from "framer-motion";
+import Loading from "Loading.mp4";
 
 function App() {
   const rippleInterval = useRef(null);
