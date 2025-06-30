@@ -74,7 +74,7 @@ function App() {
               playsInline
               onEnded={() => setIsLoading(false)}
             >
-              <source src="/Loading.mp4" type="video/mp4" />
+              <source src={Loading} type="video/mp4" />
             </video>
           </motion.div>
         )}
