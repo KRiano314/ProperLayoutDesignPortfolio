@@ -6,8 +6,8 @@ import React, { useEffect, useRef, useState } from "react";
 import Resume from "./Resume.js";
 import Footer from "./Footer.js";
 import { motion, AnimatePresence } from "framer-motion";
-import Loading from "./Loading.mp4";
-import fleurdelys from "./fleurdelys.mp4"; // ✅ Import your background video
+import Loading2 from "./Loading2.mp4";
+import Fleurdelys from "./Fleurdelys.mp4"; // ✅ Import your background video
 
 function App() {
   const rippleInterval = useRef(null);
@@ -75,7 +75,7 @@ function App() {
               playsInline
               onEnded={() => setIsLoading(false)}
             >
-              <source src={Loading} type="video/mp4" />
+              <source src={Loading2} type="video/mp4" />
             </video>
           </motion.div>
         )}
@@ -102,7 +102,7 @@ function App() {
               loop
               playsInline
             >
-              <source src={fleurdelys} type="video/mp4" />
+              <source src={Fleurdelys} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
 
