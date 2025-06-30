@@ -7,7 +7,7 @@ import Resume from "./Resume.js";
 import Footer from "./Footer.js";
 import { motion, AnimatePresence } from "framer-motion";
 import Loading from "./Loading.mp4";
-import FleurDeLys from "./fleurdelys.mp4"; // ✅ Import your background video
+import fleurdelys from "./fleurdelys.mp4"; // ✅ Import your background video
 
 function App() {
   const rippleInterval = useRef(null);
@@ -102,7 +102,7 @@ function App() {
               loop
               playsInline
             >
-              <source src={FleurDeLys} type="video/mp4" />
+              <source src={fleurdelys} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
 
