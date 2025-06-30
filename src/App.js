@@ -76,6 +76,7 @@ function App() {
             >
               <source src={Loading} type="video/mp4" />
             </video>
+            
           </motion.div>
         )}
       </AnimatePresence>
@@ -99,9 +100,15 @@ function App() {
               <h1>Kelsey Riano</h1>
               <span>Aspiring Frontend Developer | Enthusiast in Machine Learning & Automation Systems</span>
               <br />
-              <button onClick={() => aboutRef.current?.scrollIntoView({ behavior: "smooth" })}>
+              <button
+                className="cyber-button bg-yellow fg-green"
+                onClick={() => aboutRef.current?.scrollIntoView({ behavior: "smooth" })}
+              >
                 Learn More
+                <span className="glitchtext">L34rn M0re</span>
+                
               </button>
+
             </div>
           </header>
 

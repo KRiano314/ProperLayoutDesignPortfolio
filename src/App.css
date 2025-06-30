@@ -147,7 +147,7 @@ main {
   cursor: pointer;
   user-select: none;
   border-radius: 15px;
-  color: #22d3ee;
+  color: #22c55e;
   font-weight: 700;
   letter-spacing: 1px;
   transition: background-color 0.3s ease;
@@ -176,22 +176,62 @@ main {
   animation: typingP 2s steps(15) forwards;
 }
 
+
 .IntroText h1 {
-  font-size: 3.5rem;
-  font-weight: 800;
+  font-family: 'Cyberpunk', sans-serif;
+  font-size: 5rem;
+  font-weight: 900; /* Try 700, 800, or 900 */
+  color: #ffee00;
+  transform: skewX(-12deg);
+  letter-spacing: 0.05em;
+  text-shadow:
+  -1px -1px 0 #000,
+   1px -1px 0 #000,
+  -1px  1px 0 #000,
+   1px  1px 0 #000,
+   0 0 1px #ffee00,
+   0 0 2px #ffee00,
+   0 0 3px #ffee00,
+   0 0 6px #ffee00,
+   0 0 10px #0ff;
+
+
+
+
   overflow: hidden;
   white-space: nowrap;
-  direction: rtl;
-  color: #22d3ee;
-  text-shadow: 0 0 6px #0ff, 0 0 12px #000000;
-  animation: typingH1 3s steps(20) forwards;
+  width: 0; /* crucial */
+  animation: typingH1 3s steps(20, end) forwards, flicker 2s infinite;
 }
+
+
+@keyframes typingH1 {
+  from { width: 0; }
+  to { width: 20ch; } /* match length of your header text */
+}
+
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  10% { opacity: 0.9; }
+  20% { opacity: 0.6; }
+  30% { opacity: 1; }
+  40% { opacity: 0.85; }
+  50% { opacity: 0.5; }
+  60% { opacity: 1; }
+  70% { opacity: 0.95; }
+  80% { opacity: 0.7; }
+  90% { opacity: 1; }
+}
+
+
 
 .IntroText span {
   margin-top: 10px;
   font-size: 1.5vw;
   letter-spacing: 2px;
-  color: #ffee00;
+  
+  color: #22d3ee;
   overflow: hidden;
   white-space: nowrap;
   animation: typingSpan 1.5s steps(15) forwards;
@@ -233,3 +273,8 @@ main {
   width: 100%;
   height: 100%;
 }
+
+.audio-track {
+  display: none; /* fully hidden but plays */
+}
+

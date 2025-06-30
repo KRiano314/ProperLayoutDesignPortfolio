@@ -1,11 +1,22 @@
 
 .resume-section {
-  background: #0d0d0d; /* darker background for more contrast */
+  position: relative;
   padding: 60px 30px;
   font-family: 'Orbitron', sans-serif;
   text-align: center;
-  position: relative;
   margin: 0 auto;
+  z-index: auto;
+  overflow: hidden;
+}
+
+/* ✅ Dark background layer behind everything */
+.resume-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #0d0d0d;
+  z-index: -5;
+  pointer-events: none;
 }
 
 .resume-section h2 {
@@ -65,6 +76,7 @@
   font-size: 0.875rem;
   letter-spacing: 1px;
   transition: all 0.3s ease;
+  z-index: 2;
 }
 
 .download-resume-btn:hover {

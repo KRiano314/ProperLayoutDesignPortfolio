@@ -57,6 +57,7 @@
   position: absolute;
   inset: 0;
   z-index: 1;
+  
 }
 
 .project-image img {
@@ -65,6 +66,7 @@
   object-fit: cover;
   filter: brightness(0.5);
   transition: filter 0.3s ease;
+  border-radius: 15px;
 }
 
 .project-wrapper:hover .project-image img {
