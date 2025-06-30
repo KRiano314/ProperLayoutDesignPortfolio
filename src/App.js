@@ -7,6 +7,7 @@ import Resume from "./Resume.js";
 import Footer from "./Footer.js";
 import { motion, AnimatePresence } from "framer-motion";
 import Loading from "./Loading.mp4";
+import FleurDeLys from "./fleurdelys.mp4"; // ✅ Import your background video
 
 function App() {
   const rippleInterval = useRef(null);
@@ -17,11 +18,11 @@ function App() {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  // Fade-out after 5 seconds or when video ends
+  // Fade-out after 10 seconds or when video ends
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsLoading(false);
-    }, 10000); // match video length
+    }, 10000);
 
     return () => clearTimeout(timeout);
   }, []);
@@ -93,6 +94,18 @@ function App() {
           </div>
 
           <header className="MainHeader">
+            {/* ✅ Background video inserted here */}
+            <video
+              className="background-video"
+              autoPlay
+              muted
+              loop
+              playsInline
+            >
+              <source src={FleurDeLys} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+
             <div className="IntroText">
               <p>Hello, I'm</p>
               <h1>Kelsey Riano</h1>
