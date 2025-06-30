@@ -7,8 +7,7 @@ import Resume from "./Resume.js";
 import Footer from "./Footer.js";
 import { motion, AnimatePresence } from "framer-motion";
 import Loading2 from "./Loading2.mp4";
-import Fleurdelys from "./Fleurdelys.mp4"; // ✅ Background video
-// import FleurdelysCompressed from "./Fleurdelys_compressed.mp4"; // ✅ Optional: use compressed version
+import BigCart from "./BigCart.mp4";
 
 function App() {
   const rippleInterval = useRef(null);
@@ -104,7 +103,7 @@ function App() {
               preload="auto"
               poster="/poster.jpg" // ✅ Replace with actual poster image path
             >
-              <source src={Fleurdelys} type="video/mp4" />
+              <source src={BigCart} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
 
