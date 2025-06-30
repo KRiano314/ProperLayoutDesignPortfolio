@@ -28,11 +28,12 @@ const projects = [
   image: "/Portfolio.png"
   },
   {
-    title: "YOLO/TensorFlow Object Detection (Ongoing)",
+    title: "YOLO/Roboflow Object Detection (Ongoing)",
     description:
       "Building a real-time detection system using camera feeds and machine learning for automation and analysis.",
-    tech: "Python · OpenCV · TensorFlow · YOLOv8",
-    variant: "hiddenTop"
+    tech: "Python · OpenCV · Roboflow · YOLOv8",
+    variant: "hiddenTop",
+    image: "/Roboflow.png"
   }
 ];
 
