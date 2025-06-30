@@ -7,7 +7,8 @@ import Resume from "./Resume.js";
 import Footer from "./Footer.js";
 import { motion, AnimatePresence } from "framer-motion";
 import Loading2 from "./Loading2.mp4";
-import Fleurdelys from "./Fleurdelys.mp4"; // ✅ Import your background video
+import Fleurdelys from "./Fleurdelys.mp4"; // ✅ Background video
+// import FleurdelysCompressed from "./Fleurdelys_compressed.mp4"; // ✅ Optional: use compressed version
 
 function App() {
   const rippleInterval = useRef(null);
@@ -18,7 +19,6 @@ function App() {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  // Fade-out after 10 seconds or when video ends
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsLoading(false);
@@ -94,13 +94,15 @@ function App() {
           </div>
 
           <header className="MainHeader">
-            {/* ✅ Background video inserted here */}
+            {/* ✅ Optimized background video with preload and poster */}
             <video
               className="background-video"
               autoPlay
               muted
               loop
               playsInline
+              preload="auto"
+              poster="/poster.jpg" // ✅ Replace with actual poster image path
             >
               <source src={Fleurdelys} type="video/mp4" />
               Your browser does not support the video tag.
