@@ -126,11 +126,14 @@ main {
   animation: slideDown 1s ease forwards;
 }
 
-.MainHeader::before {
-  content: "";
+/* Background Video */
+.background-video {
   position: absolute;
-  inset: 0;
-  background: url('./HBGGIF.gif') center center/cover no-repeat;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
   z-index: -5;
 }
 
