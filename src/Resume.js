@@ -27,23 +27,22 @@ function Resume({ resumeRef }) {
       </div>
 
       {/* ✅ Resume download from public folder */}
-      <div>
-                <button
-
-                className="cyber-button bg-yellow fg-green"
-
-                onClick={() => window.open("/Kelsey_Riano_VisualCV_Resume.pdf", "_blank")}
-
-              >
-
-                Download Resume
-
-                <span className="glitchtext">D0wnl0@d PDF</span>
-
-                
-
-              </button>
-      </div>
+        <div>
+            <button
+            
+             className="cyber-button bg-yellow fg-green"
+              
+            onClick={() => window.open("/Kelsey_Riano_VisualCV_Resume.pdf", "_blank")}
+              
+             >
+            
+            Download Resume
+              
+            <span className="glitchtext">D0wnl0@d PDF</span>
+              
+              
+             </button>
+        </div>
     </section>
   )
 }

@@ -30,7 +30,7 @@ const projects = [
     image: "/Portfolio.png",
   },
   {
-    title: "YOLO/Roboflow Object Detection (Ongoing)",
+    title: "Roboflow Object Detection",
     description:
       "Building a real-time detection system using camera feeds and machine learning for automation and analysis.",
     tech: "Python · OpenCV · Roboflow · YOLOv8",
@@ -45,19 +45,7 @@ const ProjectsPreview = forwardRef(function ProjectsPreview(props, externalRef) 
     triggerOnce: true,
   })
 
-  const [openCards, setOpenCards] = useState(Array(projects.length).fill(false))
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768)
-    }
-
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-
-    return () => window.removeEventListener("resize", checkMobile)
-  }, [])
+  const [flippedCards, setFlippedCards] = useState(Array(projects.length).fill(false))
 
   // Load the cyber glitch CSS
   useEffect(() => {
@@ -74,7 +62,8 @@ const ProjectsPreview = forwardRef(function ProjectsPreview(props, externalRef) 
   }, [])
 
   function toggleCard(index) {
-    setOpenCards((prev) => prev.map((val, i) => (i === index ? !val : val)))
+    console.log(`Toggling card ${index}`) // Debug log
+    setFlippedCards((prev) => prev.map((val, i) => (i === index ? !val : val)))
   }
 
   function setRefs(el) {
@@ -87,40 +76,39 @@ const ProjectsPreview = forwardRef(function ProjectsPreview(props, externalRef) 
       <h2 className="projects-title cyber-glitch-4">My Projects</h2>
       <div className="projects-grid">
         {projects.map((project, index) => {
-          const slideX = index % 2 === 0 ? -430 : 430
-          const isOpen = openCards[index]
+          const isFlipped = flippedCards[index]
 
           const initialX = project.variant === "hiddenLeft" ? -100 : project.variant === "hiddenRight" ? 100 : 0
           const initialY = project.variant === "hiddenTop" ? -100 : project.variant === "hiddenBottom" ? 100 : 0
 
           return (
-            <div key={index} className={`project-wrapper ${isOpen && isMobile ? "flipped" : ""}`}>
+            <motion.div
+              key={index}
+              className={`project-wrapper ${isFlipped ? "flipped" : ""}`}
+              initial={{ opacity: 0, x: initialX, y: initialY }}
+              animate={{
+                opacity: inView ? 1 : 0,
+                x: 0,
+                y: 0,
+              }}
+              transition={{ type: "spring", stiffness: 80, damping: 14 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => toggleCard(index)}
+            >
+              {/* Front of card */}
+              <div className="project-card">
+                <h3>{project.title}</h3>
+                <p className="project-description">{project.description}</p>
+                <p className="project-tech">{project.tech}</p>
+              </div>
+
+              {/* Back of card - only render if image exists */}
               {project.image && (
                 <div className="project-image">
                   <img src={project.image || "/placeholder.svg"} alt={project.title} />
                 </div>
               )}
-              <motion.div
-                className="project-card"
-                initial={{ opacity: 0, x: initialX, y: initialY }}
-                animate={{
-                  opacity: inView ? 1 : 0,
-                  x: isMobile ? 0 : isOpen ? slideX : 0,
-                  y: 0,
-                }}
-                transition={{ type: "spring", stiffness: 80, damping: 14 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => toggleCard(index)}
-                style={{
-                  // Disable Framer Motion transforms on mobile to allow CSS 3D transforms
-                  transform: isMobile && isOpen ? "none" : undefined,
-                }}
-              >
-                <h3>{project.title}</h3>
-                <p className="project-description">{project.description}</p>
-                <p className="project-tech">{project.tech}</p>
-              </motion.div>
-            </div>
+            </motion.div>
           )
         })}
       </div>
