@@ -12,7 +12,7 @@ export default function Footer({ contactRef }) {
         <div className="footer-links">
           <a href="mailto:kelseyriano8@gmail.com">kelseyriano8@gmail.com</a>
           <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://github.com/KRiano314?tab=repositories" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
 
         <div className="footer-bottom">
