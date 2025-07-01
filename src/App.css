@@ -10,7 +10,7 @@ html, body {
   scroll-behavior: smooth;
   background: #0d0d0d;
   color: #e0e0e0;
-  font-family: 'Orbitron', sans-serif; /* Load this from Google Fonts */
+  font-family: 'Orbitron', sans-serif;
 }
 
 .App {
@@ -29,10 +29,11 @@ main {
   width: 100%;
   z-index: 20;
   background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
 }
 
 .NavbarFixed .Navbar {
-  padding: 20px;
+  padding: 15px 20px;
 }
 
 .Navbar {
@@ -44,20 +45,23 @@ main {
   display: flex;
   list-style: none;
   gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .Navbar button {
   position: relative;
   background: transparent;
   border: none;
-  color: #22d3ee; /* neon cyan */
+  color: #22d3ee;
   font-weight: 700;
   letter-spacing: 1px;
-  padding: 1vw;
+  padding: 12px 16px;
   cursor: pointer;
   text-transform: uppercase;
   overflow: hidden;
   transition: color 0.3s ease;
+  font-size: 0.9rem;
 }
 
 .Navbar button::before,
@@ -126,7 +130,6 @@ main {
   animation: slideDown 1s ease forwards;
 }
 
-/* Background Video or Image (GIF) */
 .background-video {
   position: absolute;
   top: 0;
@@ -140,10 +143,10 @@ main {
 }
 
 .MainHeader button {
-  font-size: 1.5em;
+  font-size: clamp(1rem, 4vw, 1.5rem);
   background: rgba(0, 0, 0, 0.3);
   border: none;
-  padding: 1vw;
+  padding: 12px 24px;
   cursor: pointer;
   user-select: none;
   border-radius: 15px;
@@ -151,6 +154,7 @@ main {
   font-weight: 700;
   letter-spacing: 1px;
   transition: background-color 0.3s ease;
+  margin: 20px;
 }
 
 .MainHeader button:hover {
@@ -164,77 +168,53 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  text-align: center;
 }
 
 .IntroText p {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
   font-weight: 300;
   overflow: hidden;
   white-space: nowrap;
   color: #c084fc;
   text-shadow: 0 0 6px #9333ea, 0 0 12px #c084fc;
   animation: typingP 2s steps(15) forwards;
+  margin-bottom: 20px;
 }
-
 
 .IntroText h1 {
   font-family: 'Cyberpunk', sans-serif;
-  font-size: 5rem;
-  font-weight: 900; /* Try 700, 800, or 900 */
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
   color: #ffee00;
   transform: skewX(-12deg);
   letter-spacing: 0.05em;
   text-shadow:
-  -1px -1px 0 #000,
-   1px -1px 0 #000,
-  -1px  1px 0 #000,
-   1px  1px 0 #000,
-   0 0 1px #ffee00,
-   0 0 2px #ffee00,
-   0 0 3px #ffee00,
-   0 0 6px #ffee00,
-   0 0 10px #0ff;
-
-
-
-
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000,
+     0 0 1px #ffee00,
+     0 0 2px #ffee00,
+     0 0 3px #ffee00,
+     0 0 6px #ffee00,
+     0 0 10px #0ff;
   overflow: hidden;
   white-space: nowrap;
-  width: 0; /* crucial */
+  width: 0;
   animation: typingH1 3s steps(20, end) forwards, flicker 2s infinite;
+  margin-bottom: 20px;
 }
-
-
-@keyframes typingH1 {
-  from { width: 0; }
-  to { width: 20ch; } /* match length of your header text */
-}
-
-
-@keyframes flicker {
-  0%, 100% { opacity: 1; }
-  10% { opacity: 0.9; }
-  20% { opacity: 0.6; }
-  30% { opacity: 1; }
-  40% { opacity: 0.85; }
-  50% { opacity: 0.5; }
-  60% { opacity: 1; }
-  70% { opacity: 0.95; }
-  80% { opacity: 0.7; }
-  90% { opacity: 1; }
-}
-
-
 
 .IntroText span {
-  margin-top: 10px;
-  font-size: 1.5vw;
+  font-size: clamp(1rem, 3vw, 1.5rem);
   letter-spacing: 2px;
-  
   color: #22d3ee;
   overflow: hidden;
   white-space: nowrap;
   animation: typingSpan 1.5s steps(15) forwards;
+  max-width: 90%;
 }
 
 /* Keyframes */
@@ -258,6 +238,19 @@ main {
   to { width: 98ch; }
 }
 
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  10% { opacity: 0.9; }
+  20% { opacity: 0.6; }
+  30% { opacity: 1; }
+  40% { opacity: 0.85; }
+  50% { opacity: 0.5; }
+  60% { opacity: 1; }
+  70% { opacity: 0.95; }
+  80% { opacity: 0.7; }
+  90% { opacity: 1; }
+}
+
 /* Splash screen */
 .splash-screen {
   position: fixed;
@@ -272,9 +265,63 @@ main {
 .splash-video {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .audio-track {
-  display: none; /* fully hidden but plays */
+  display: none;
 }
 
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .Navbar ul {
+    gap: 15px;
+    padding: 0 10px;
+  }
+  
+  .Navbar button {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .IntroText {
+    padding: 40px 20px;
+  }
+  
+  .IntroText h1 {
+    transform: skewX(-8deg);
+  }
+  
+  .IntroText span {
+    letter-spacing: 1px;
+    line-height: 1.4;
+    white-space: normal;
+    animation: none;
+    width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .NavbarFixed .Navbar {
+    padding: 10px 15px;
+  }
+  
+  .Navbar ul {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .Navbar button {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
+  
+  .IntroText {
+    padding: 20px 15px;
+  }
+  
+  .MainHeader button {
+    margin: 10px;
+    padding: 10px 20px;
+  }
+}
