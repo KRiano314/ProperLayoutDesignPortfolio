@@ -6,7 +6,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Resume from "./Resume.js";
 import Footer from "./Footer.js";
 import { motion, AnimatePresence } from "framer-motion";
-import Loading from "./Loading.mp4";
+import Loading2 from "./Loading2.mp4";
 import HBGGIF from "./HBGGIF.gif";
 
 function App() {
@@ -74,7 +74,7 @@ function App() {
               playsInline
               onEnded={() => setIsLoading(false)}
             >
-              <source src={Loading} type="video/mp4" />
+              <source src={Loading2} type="video/mp4" />
             </video>
             
           </motion.div>
