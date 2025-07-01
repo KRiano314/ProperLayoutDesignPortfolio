@@ -129,7 +129,6 @@ export default function Footer({ contactRef }) {
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} Kelsey Riano — All rights reserved.</p>
         </div>
       </div>
     </footer>
