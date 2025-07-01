@@ -1,130 +1,480 @@
-"use client"
+/* === Section === */
+.projects-section {
+  scroll-margin-top: 120px;
+  min-height: 100vh;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 25%, #0a0a1a 50%, #1a0a0a 75%, #0a0a0a 100%);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Orbitron", sans-serif;
+  position: relative;
+  overflow: hidden;
+}
 
-import { forwardRef, useState, useEffect } from "react"
-import { useInView } from "react-intersection-observer"
-import { motion } from "framer-motion"
-import "./Projects.css"
+.projects-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 60%, rgba(255, 255, 0, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
 
-const projects = [
-  {
-    title: "WordPress Website Contract",
-    description:
-      "1-year freelance project creating and maintaining a responsive business website with SEO and custom features.",
-    tech: "WordPress · PHP · Elementor",
-    variant: "hiddenLeft",
-    image: "/ShojikiTrading.png",
-  },
-  {
-    title: "Smart Trash Segregator",
-    description: "Arduino-based system that uses sensors to separate wet and dry waste with a servo-powered bin.",
-    tech: "Arduino · C++ · IR & Capacitive",
-    variant: "hiddenRight",
-    image: "/JAOBIN.jpg",
-  },
-  {
-    title: "Personal Portfolio Website",
-    description:
-      "This site — built in React to showcase my projects, skills, and ongoing work in frontend and automation.",
-    tech: "React · JavaScript · Framer Motion",
-    variant: "hiddenBottom",
-    image: "/Portfolio.png",
-  },
-  {
-    title: "YOLO/Roboflow Object Detection (Ongoing)",
-    description:
-      "Building a real-time detection system using camera feeds and machine learning for automation and analysis.",
-    tech: "Python · OpenCV · Roboflow · YOLOv8",
-    variant: "hiddenTop",
-    image: "/Roboflow.png",
-  },
-]
+.projects-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 100px,
+    rgba(0, 255, 255, 0.02) 100px,
+    rgba(0, 255, 255, 0.02) 102px
+  );
+  pointer-events: none;
+  z-index: 2;
+  animation: grid-move 10s linear infinite;
+}
 
-const ProjectsPreview = forwardRef(function ProjectsPreview(props, externalRef) {
-  const { ref: inViewRef, inView } = useInView({
-    threshold: 0.3,
-    triggerOnce: true, // Make sure it doesn't animate again when scrolling back
-  })
+@keyframes grid-move {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(102px);
+  }
+}
 
-  const [openCards, setOpenCards] = useState(Array(projects.length).fill(false))
-  const [isMobile, setIsMobile] = useState(false)
+/* === Title === */
+.projects-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 60px;
+  text-align: center;
+  background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00, #00ffff);
+  background-size: 400% 400%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-shadow: 0 0 20px #00ffff;
+  animation: rainbow-glow 3s ease-in-out infinite, title-float 4s ease-in-out infinite;
+  position: relative;
+  z-index: 10;
+}
 
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768)
-    }
+.projects-title::before {
+  content: "< LOADING PROJECTS... />";
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.8rem;
+  color: #00ffff;
+  opacity: 0.7;
+  font-family: "Courier New", monospace;
+  animation: typing-cursor 2s steps(20) infinite;
+}
 
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
+.projects-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #00ffff, #ff00ff, #ffff00, transparent);
+  animation: underline-scan 2s ease-in-out infinite;
+}
 
-    return () => window.removeEventListener("resize", checkMobile)
-  }, [])
+@keyframes rainbow-glow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    filter: brightness(1);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: brightness(1.3);
+  }
+}
 
-  // Load the cyber glitch CSS
-  useEffect(() => {
-    const link = document.createElement("link")
-    link.rel = "stylesheet"
-    link.href = "/fonts/cyber-glitch.css"
-    document.head.appendChild(link)
+@keyframes title-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
 
-    return () => {
-      // Cleanup: remove the link when component unmounts
-      if (document.head.contains(link)) {
-        document.head.removeChild(link)
-      }
-    }
-  }, [])
+@keyframes typing-cursor {
+  0%,
+  50% {
+    opacity: 0.7;
+  }
+  51%,
+  100% {
+    opacity: 0.3;
+  }
+}
 
-  function toggleCard(index) {
-    setOpenCards((prev) => prev.map((val, i) => (i === index ? !val : val)))
+@keyframes underline-scan {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+}
+
+/* === Grid === */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 40px;
+  max-width: 1000px;
+  width: 100%;
+  justify-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+/* === Project Wrapper === */
+.project-wrapper {
+  position: relative;
+  overflow: visible;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.project-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00, #00ffff);
+  border-radius: 25px;
+  z-index: -1;
+  animation: border-pulse 3s ease-in-out infinite;
+}
+
+@keyframes border-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+.project-image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.project-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+
+.project-wrapper:hover .project-image::before {
+  opacity: 0.3;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  filter: brightness(0.4) contrast(1.2) saturate(1.5);
+  transition: all 0.3s ease;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.project-wrapper:hover .project-image img {
+  filter: brightness(0.8) contrast(1.3) saturate(1.8);
+  transform: scale(1.05);
+}
+
+.project-card {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(135deg, rgba(20, 20, 40, 0.95) 0%, rgba(40, 20, 60, 0.95) 100%);
+  padding: 35px;
+  border-radius: 20px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), 0 0 40px rgba(255, 0, 255, 0.3), inset 0 0 20px rgba(0, 255, 255, 0.1);
+  text-align: center;
+  color: #e0e0e0;
+  border: 2px solid #00ffff;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
+  animation: scan-line 4s ease-in-out infinite;
+}
+
+@keyframes scan-line {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: -100%;
+  }
+}
+
+.project-card:hover {
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 0 60px rgba(255, 0, 255, 0.5), 0 0 90px rgba(255, 255, 0, 0.3), inset 0
+    0 30px rgba(0, 255, 255, 0.2);
+  transform: translateY(-10px) scale(1.02);
+  border-color: #ff00ff;
+}
+
+.project-card h3 {
+  background: linear-gradient(45deg, #00ffff, #ff00ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px #00ffff;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+.project-card h3::after {
+  content: " [ACTIVE]";
+  font-size: 0.6rem;
+  color: #00ff41;
+  animation: status-blink 2s ease-in-out infinite;
+}
+
+@keyframes status-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0.3;
+  }
+}
+
+.project-description {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 15px 0;
+  color: #d0d0d0;
+  line-height: 1.6;
+  text-shadow: 0 0 5px rgba(208, 208, 208, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+.project-description::before {
+  content: "> ";
+  color: #00ffff;
+  font-weight: bold;
+  text-shadow: 0 0 5px #00ffff;
+}
+
+.project-tech {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #ffff00;
+  text-shadow: 0 0 8px #ffff00;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 0, 0.3);
+  border-radius: 10px;
+  background: rgba(255, 255, 0, 0.05);
+  position: relative;
+  z-index: 1;
+  animation: tech-glow 3s ease-in-out infinite;
+}
+
+@keyframes tech-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(255, 255, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255, 255, 0, 0.6);
+  }
+}
+
+.project-tech::before {
+  content: "TECH STACK: ";
+  font-size: 0.7rem;
+  color: #00ffff;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Additional cyberpunk elements */
+.project-wrapper:nth-child(odd) .project-card {
+  border-color: #ff00ff;
+}
+
+.project-wrapper:nth-child(even) .project-card {
+  border-color: #00ffff;
+}
+
+.project-wrapper:nth-child(3n) .project-card {
+  border-color: #ffff00;
+}
+
+.project-wrapper:hover .project-card::before {
+  animation-duration: 2s;
+}
+
+/* Mobile flip animation - FIXED VERSION */
+@media (max-width: 768px) {
+  .projects-title {
+    font-size: 2.2rem;
+    letter-spacing: 2px;
   }
 
-  function setRefs(el) {
-    inViewRef(el)
-    if (externalRef) externalRef.current = el
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
 
-  return (
-    <section className="projects-section" ref={setRefs}>
-      <h2 className="projects-title cyber-glitch-4">My Projects</h2>
-      <div className="projects-grid">
-        {projects.map((project, index) => {
-          const slideX = index % 2 === 0 ? -430 : 430
-          const isOpen = openCards[index]
+  /* Mobile flip card setup */
+  .project-wrapper {
+    perspective: 1000px;
+    height: 350px;
+    -webkit-perspective: 1000px;
+  }
 
-          const initialX = project.variant === "hiddenLeft" ? -100 : project.variant === "hiddenRight" ? 100 : 0
-          const initialY = project.variant === "hiddenTop" ? -100 : project.variant === "hiddenBottom" ? 100 : 0
+  .project-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transition: transform 0.8s ease-in-out;
+    -webkit-transition: -webkit-transform 0.8s ease-in-out;
+    padding: 25px;
+    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+  }
 
-          // Use mobile state instead of inline check
+  .project-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(20, 20, 40, 0.95) 0%, rgba(40, 20, 60, 0.95) 100%);
+    border: 2px solid #00ffff;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), 0 0 40px rgba(255, 0, 255, 0.3);
+    backdrop-filter: blur(10px);
+  }
 
-          return (
-            <div key={index} className={`project-wrapper ${isOpen && isMobile ? "flipped" : ""}`}>
-              {project.image && (
-                <div className="project-image">
-                  <img src={project.image || "/placeholder.svg"} alt={project.title} />
-                </div>
-              )}
-              <motion.div
-                className="project-card"
-                initial={{ opacity: 0, x: initialX, y: initialY }}
-                animate={{
-                  opacity: inView ? 1 : 0,
-                  x: isMobile ? 0 : isOpen ? slideX : 0,
-                  y: 0,
-                }}
-                transition={{ type: "spring", stiffness: 80, damping: 14 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => toggleCard(index)}
-              >
-                <h3>{project.title}</h3>
-                <p className="project-description">{project.description}</p>
-                <p className="project-tech">{project.tech}</p>
-              </motion.div>
-            </div>
-          )
-        })}
-      </div>
-    </section>
-  )
-})
+  .project-image img {
+    max-width: 85%;
+    max-height: 85%;
+    object-fit: contain;
+    filter: brightness(0.9) contrast(1.3) saturate(1.8);
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.5);
+  }
 
-export default ProjectsPreview
+  /* Flipped state */
+  .project-wrapper.flipped .project-card {
+    transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+  }
+
+  .project-wrapper.flipped .project-image {
+    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+  }
+
+  /* Disable hover effects on mobile */
+  .project-card:hover {
+    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+  }
+
+  .project-wrapper.flipped .project-card:hover {
+    transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+  }
+}
+
+/* Desktop responsive adjustments */
+@media (min-width: 769px) {
+  .projects-grid {
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  }
+}
