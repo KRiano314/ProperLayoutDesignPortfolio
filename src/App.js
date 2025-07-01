@@ -98,6 +98,7 @@ function App() {
             <div className="IntroText">
               <p>Hello, I'm</p>
               <h1>Kelsey Riano</h1>
+              <br></br>
               <span>Aspiring Frontend Developer | Enthusiast in Machine Learning & Automation Systems</span>
               <br />
               <button
