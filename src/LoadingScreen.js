@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback, useMemo } from "react"
 import "./LoadingScreen.css"
 
 const LoadingScreen = ({ onLoadingComplete }) => {
@@ -8,21 +8,32 @@ const LoadingScreen = ({ onLoadingComplete }) => {
   const [loadingText, setLoadingText] = useState("")
   const [currentPhase, setCurrentPhase] = useState(0)
 
-  const loadingPhases = [
-    "INITIALIZING NEURAL NETWORK...",
-    "LOADING CYBERNETIC MODULES...",
-    "ESTABLISHING QUANTUM LINK...",
-    "SYNCHRONIZING DATA STREAMS...",
-    "ACTIVATING HOLOGRAPHIC INTERFACE...",
-    "SYSTEM READY - WELCOME TO THE MATRIX",
-  ]
+  // Move loadingPhases outside of component or memoize it to avoid dependency issues
+  const loadingPhases = useMemo(
+    () => [
+      "INITIALIZING NEURAL NETWORK...",
+      "LOADING CYBERNETIC MODULES...",
+      "ESTABLISHING QUANTUM LINK...",
+      "SYNCHRONIZING DATA STREAMS...",
+      "ACTIVATING HOLOGRAPHIC INTERFACE...",
+      "SYSTEM READY - WELCOME TO THE MATRIX",
+    ],
+    [],
+  )
+
+  // Memoize the onLoadingComplete callback to avoid unnecessary re-renders
+  const handleLoadingComplete = useCallback(() => {
+    if (onLoadingComplete) {
+      onLoadingComplete()
+    }
+  }, [onLoadingComplete])
 
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval)
-          setTimeout(() => onLoadingComplete && onLoadingComplete(), 1000)
+          setTimeout(() => handleLoadingComplete(), 1000)
           return 100
         }
         return prev + 1
@@ -30,7 +41,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
     }, 50)
 
     return () => clearInterval(interval)
-  }, [onLoadingComplete])
+  }, [handleLoadingComplete])
 
   useEffect(() => {
     const phaseInterval = setInterval(() => {
@@ -43,7 +54,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
     }, 800)
 
     return () => clearInterval(phaseInterval)
-  }, [])
+  }, [loadingPhases.length])
 
   useEffect(() => {
     const text = loadingPhases[currentPhase] || ""
@@ -60,7 +71,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
     }, 50)
 
     return () => clearInterval(typeInterval)
-  }, [currentPhase])
+  }, [currentPhase, loadingPhases])
 
   return (
     <div className="loading-screen">
@@ -219,3 +230,4 @@ const LoadingScreen = ({ onLoadingComplete }) => {
 }
 
 export default LoadingScreen
+        
