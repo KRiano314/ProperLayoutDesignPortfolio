@@ -1,35 +1,36 @@
-import "./App.css";
-import HrefButtons from "./Buttons";
-import ProjectsPreview from "./ProjectPreview.js";
-import AboutMe from "./AboutMe.js";
-import React, { useEffect, useRef, useState } from "react";
-import Resume from "./Resume.js";
-import Footer from "./Footer.js";
-import { motion, AnimatePresence } from "framer-motion";
-import Loading2 from "./Loading2.mp4";
-import HBGGIF from "./HBGGIF.gif";
+"use client"
+
+import "./App.css"
+import "./LoadingScreen.css"
+
+import HrefButtons from "./Buttons"
+import ProjectsPreview from "./ProjectPreview.js"
+import AboutMe from "./AboutMe.js"
+import { useEffect, useRef, useState } from "react"
+import Resume from "./Resume.js"
+import Footer from "./Footer.js"
+import { motion, AnimatePresence } from "framer-motion"
+import LoadingScreen from "./LoadingScreen"
+
+import HBGGIF from "./HBGGIF.gif"
 
 function App() {
-  const rippleInterval = useRef(null);
-  const aboutRef = useRef(null);
-  const projectsRef = useRef(null);
-  const resumeRef = useRef(null);
-  const contactRef = useRef(null);
+  const rippleInterval = useRef(null)
+  const aboutRef = useRef(null)
+  const projectsRef = useRef(null)
+  const resumeRef = useRef(null)
+  const contactRef = useRef(null)
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true)
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setIsLoading(false);
-    }, 10500);
-
-    return () => clearTimeout(timeout);
-  }, []);
+  const handleLoadingComplete = () => {
+    setIsLoading(false)
+  }
 
   useEffect(() => {
     if (rippleInterval.current) {
-      clearInterval(rippleInterval.current);
-      rippleInterval.current = null;
+      clearInterval(rippleInterval.current)
+      rippleInterval.current = null
     }
 
     try {
@@ -38,45 +39,31 @@ function App() {
           resolution: 1024,
           dropRadius: 50,
           perturbance: 1,
-        });
+        })
       } else {
-        console.warn("Ripples plugin not loaded.");
+        console.warn("Ripples plugin not loaded.")
       }
     } catch (e) {
-      console.error("Ripples initialization failed:", e);
+      console.error("Ripples initialization failed:", e)
     }
 
     return () => {
       if (window.$ && window.$(".MainHeader").data("ripples")) {
-        window.$(".MainHeader").ripples("destroy");
+        window.$(".MainHeader").ripples("destroy")
       }
       if (rippleInterval.current) {
-        clearInterval(rippleInterval.current);
-        rippleInterval.current = null;
+        clearInterval(rippleInterval.current)
+        rippleInterval.current = null
       }
-    };
-  }, []);
+    }
+  }, [])
 
   return (
     <>
       <AnimatePresence>
         {isLoading && (
-          <motion.div
-            className="splash-screen"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
-          >
-            <video
-              className="splash-video"
-              autoPlay
-              muted
-              playsInline
-              onEnded={() => setIsLoading(false)}
-            >
-              <source src={Loading2} type="video/mp4" />
-            </video>
-            
+          <motion.div initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
+            <LoadingScreen onLoadingComplete={handleLoadingComplete} />
           </motion.div>
         )}
       </AnimatePresence>
@@ -94,7 +81,7 @@ function App() {
           </div>
 
           <header className="MainHeader">
-            <img src={HBGGIF} alt="Background animation" className="background-video" />
+            <img src={HBGGIF || "/placeholder.svg"} alt="Background animation" className="background-video" />
             <div className="IntroText">
               <p>Hello, I'm</p>
               <h1>Kelsey Riano</h1>
@@ -107,9 +94,7 @@ function App() {
               >
                 Learn More
                 <span className="glitchtext">L34rn M0re</span>
-                
               </button>
-
             </div>
           </header>
 
@@ -120,7 +105,7 @@ function App() {
         </div>
       )}
     </>
-  );
+  )
 }
 
-export default App;
+export default App

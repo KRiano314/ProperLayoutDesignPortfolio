@@ -1,0 +1,527 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap");
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 25%, #0a0a1a 50%, #1a0a0a 75%, #0a0a0a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Orbitron", sans-serif;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+/* Background Effects */
+.loading-bg-effects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.scan-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 255, 0.03) 2px,
+    rgba(0, 255, 255, 0.03) 4px
+  );
+  animation: scan-lines-move 2s linear infinite;
+}
+
+@keyframes scan-lines-move {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(4px);
+  }
+}
+
+.grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 98%, rgba(0, 255, 255, 0.1) 100%),
+    linear-gradient(0deg, transparent 98%, rgba(255, 0, 255, 0.1) 100%);
+  background-size: 50px 50px;
+  animation: grid-pulse 4s ease-in-out infinite;
+}
+
+@keyframes grid-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.particle-field {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #00ffff;
+  border-radius: 50%;
+  animation: particle-float 6s ease-in-out infinite;
+}
+
+.particle-0 {
+  top: 20%;
+  left: 10%;
+  background: #00ffff;
+  animation-delay: 0s;
+}
+.particle-1 {
+  top: 60%;
+  left: 80%;
+  background: #ff00ff;
+  animation-delay: 1s;
+}
+.particle-2 {
+  top: 80%;
+  left: 30%;
+  background: #ffff00;
+  animation-delay: 2s;
+}
+.particle-3 {
+  top: 40%;
+  left: 70%;
+  background: #00ffff;
+  animation-delay: 3s;
+}
+
+@keyframes particle-float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.5);
+    opacity: 1;
+  }
+}
+
+/* Main Content */
+.loading-content {
+  position: relative;
+  text-align: center;
+  z-index: 10;
+  max-width: 600px;
+  width: 90%;
+}
+
+/* Cyberpunk Logo */
+.loading-icon {
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.cyber-logo {
+  animation: logo-pulse 3s ease-in-out infinite;
+}
+
+@keyframes logo-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.05);
+    filter: brightness(1.3);
+  }
+}
+
+.logo-ring-outer {
+  stroke-dasharray: 314;
+  stroke-dashoffset: 314;
+  animation: ring-draw 3s ease-out forwards, ring-rotate 4s linear infinite;
+}
+
+.logo-ring-inner {
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  animation: ring-draw 3s ease-out 0.5s forwards, ring-rotate-reverse 6s linear infinite;
+}
+
+.logo-hexagon {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: ring-draw 3s ease-out 1s forwards;
+}
+
+.logo-center {
+  animation: center-pulse 2s ease-in-out infinite;
+}
+
+.logo-rotating {
+  animation: logo-spin 3s linear infinite;
+  transform-origin: 60px 60px;
+}
+
+@keyframes ring-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ring-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ring-rotate-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes center-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.8;
+  }
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Loading Text */
+.loading-text {
+  margin-bottom: 40px;
+}
+
+.loading-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00, #00ffff);
+  background-size: 400% 400%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+  animation: title-glow 3s ease-in-out infinite;
+}
+
+@keyframes title-glow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    filter: brightness(1);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: brightness(1.3);
+  }
+}
+
+.loading-subtitle {
+  font-size: 1rem;
+  color: #00ffff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  min-height: 1.5rem;
+}
+
+.loading-phase {
+  text-shadow: 0 0 10px #00ffff;
+}
+
+.cursor {
+  animation: cursor-blink 1s infinite;
+  color: #ffff00;
+  font-weight: bold;
+}
+
+@keyframes cursor-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Progress Bar */
+.progress-container {
+  margin-bottom: 40px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #00ffff;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ffff, #ff00ff, #ffff00);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: progress-shine 2s ease-in-out infinite;
+}
+
+@keyframes progress-shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.progress-glow {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  background: linear-gradient(90deg, #00ffff, #ff00ff, #ffff00);
+  border-radius: 6px;
+  z-index: -1;
+  filter: blur(4px);
+  opacity: 0.6;
+}
+
+.progress-text {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.progress-percentage {
+  color: #ffff00;
+  font-weight: bold;
+  text-shadow: 0 0 5px #ffff00;
+}
+
+.progress-label {
+  color: #ff00ff;
+  text-shadow: 0 0 5px #ff00ff;
+}
+
+/* Data Streams */
+.data-streams {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.data-stream {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  opacity: 0.6;
+}
+
+.stream-0 {
+  left: 10%;
+  animation-delay: 0s;
+}
+.stream-1 {
+  left: 25%;
+  animation-delay: 0.5s;
+}
+.stream-2 {
+  left: 40%;
+  animation-delay: 1s;
+}
+.stream-3 {
+  left: 60%;
+  animation-delay: 1.5s;
+}
+.stream-4 {
+  left: 75%;
+  animation-delay: 2s;
+}
+.stream-5 {
+  left: 90%;
+  animation-delay: 2.5s;
+}
+
+.stream-line {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #00ffff, transparent);
+  animation: stream-flow 3s ease-in-out infinite;
+}
+
+.stream-data {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.data-bit {
+  color: #00ffff;
+  font-size: 0.7rem;
+  font-family: "Courier New", monospace;
+  text-shadow: 0 0 3px #00ffff;
+  animation: bit-flicker 0.5s ease-in-out infinite;
+}
+
+@keyframes stream-flow {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scaleY(0.8);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scaleY(1.2);
+  }
+}
+
+@keyframes bit-flicker {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Circuit Pattern */
+.circuit-pattern {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.circuit-line {
+  stroke-dasharray: 10 5;
+  animation: circuit-flow 4s linear infinite;
+}
+
+.circuit-node {
+  animation: node-pulse 2s ease-in-out infinite;
+}
+
+@keyframes circuit-flow {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 15;
+  }
+}
+
+@keyframes node-pulse {
+  0%,
+  100% {
+    r: 4;
+    opacity: 0.8;
+  }
+  50% {
+    r: 6;
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .loading-title {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+
+  .loading-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .cyber-logo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .data-streams {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .loading-title {
+    font-size: 1.4rem;
+  }
+
+  .circuit-pattern {
+    display: none;
+  }
+}
