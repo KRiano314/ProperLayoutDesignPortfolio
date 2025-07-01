@@ -17,7 +17,8 @@ const projects = [
     description:
       "Arduino-based system that uses sensors to separate wet and dry waste with a servo-powered bin.",
     tech: "Arduino · C++ · IR & Capacitive",
-    variant: "hiddenRight"
+    variant: "hiddenRight",
+    image:"JAOBIN"
   },
   {
   title: "Personal Portfolio Website",
