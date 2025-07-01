@@ -108,7 +108,7 @@ function App() {
                 Learn More
                 <span className="glitchtext">L34rn M0re</span>
                 
-              </button>
+              </button
 
             </div>
           </header>
