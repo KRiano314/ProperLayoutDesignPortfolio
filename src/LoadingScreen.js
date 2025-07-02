@@ -27,7 +27,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
         }
         return prev + 1
       })
-    }, 50)
+    }, 15) // Changed from 50 to 20 (100 steps * 20ms = 2000ms = 2 seconds)
 
     return () => clearInterval(interval)
   }, [onLoadingComplete])
@@ -40,7 +40,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
         }
         return prev
       })
-    }, 800)
+    }, 300) // Changed from 800 to 300 for faster phase transitions
 
     return () => clearInterval(phaseInterval)
   }, [])
@@ -57,7 +57,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
       } else {
         clearInterval(typeInterval)
       }
-    }, 50)
+    }, 5) // Changed from 50 to 25 for faster typing
 
     return () => clearInterval(typeInterval)
   }, [currentPhase])
@@ -144,7 +144,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
 
         {/* Loading Text */}
         <div className="loading-text">
-          <h1 className="loading-title">KELSEY RIANO PORTFOLIO</h1>
+          <h1 className="loading-title">CYBERPUNK PORTFOLIO</h1>
           <div className="loading-subtitle">
             <span className="loading-phase">{loadingText}</span>
             <span className="cursor">|</span>
