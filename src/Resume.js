@@ -21,8 +21,8 @@ function Resume({ resumeRef }) {
         </p>
 
         {/* ✅ External link to ShojikiTrading.com */}
-        <a href="https://shojikitrading.com/" target="_blank" rel="noopener noreferrer" className="company-website-btn">
-          Visit ShojikiTrading.com
+        <a href="https://shojikitrading.page.gd/" target="_blank" rel="noopener noreferrer" className="company-website-btn">
+          Visit shojikitrading.page.gd
         </a>
       </div>
 
