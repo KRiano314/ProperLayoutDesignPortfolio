@@ -32,7 +32,7 @@ function Resume({ resumeRef }) {
             
              className="cyber-button bg-yellow fg-green"
               
-            onClick={() => window.open("public/Kelsey_M_Riano_Resume.pdf", "_blank")}
+            onClick={() => window.open("/Kelsey_M_Riano_Resume.pdf", "_blank")}
               
              >
             
