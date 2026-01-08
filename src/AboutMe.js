@@ -63,15 +63,15 @@ function AboutMe({ aboutRef }) {
         {/* RIGHT: Stats */}
         <div className="stats-section">
           <div className="stat-item">
-            <h3>3+</h3>
+            <h3>5+</h3>
             <p>Prototypes Built</p>
           </div>
           <div className="stat-item">
-            <h3>2+</h3>
+            <h3>4+</h3>
             <p>Smart Systems Created</p>
           </div>
           <div className="stat-item">
-            <h3>2+</h3>
+            <h3>4+</h3>
             <p>Web Projects Completed</p>
           </div>
         </div>
