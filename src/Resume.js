@@ -12,7 +12,7 @@ function Resume({ resumeRef }) {
       <div className="resume-summary">
         <h3>Freelance WordPress Developer</h3>
         <p>
-          <strong>Shojiki Trading</strong> — Sept 2022 to Present
+          <strong>Shojiki Trading</strong> — August 2024 to September 2025
         </p>
         <p>
           Developed responsive web applications using WordPress and Elementor. Created custom themes, implemented SEO
