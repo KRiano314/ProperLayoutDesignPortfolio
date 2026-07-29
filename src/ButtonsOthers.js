@@ -1,4 +1,4 @@
-import './App.css';
+
 import { useNavigate } from "react-router-dom";
 
 function HrefButtons2({ scrollToAbout }) {
